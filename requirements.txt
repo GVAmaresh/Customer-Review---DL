@@ -1,0 +1,8 @@
+sentencepiece
+transformers==4.13.0
+happytransformer
+torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu117
+sentence-transformers
+scikit-learn
+fastapi
+uvicorn
