@@ -78,23 +78,26 @@ def text_comparator(sentence_1, sentence_2):
 import numpy as np
 import tensorflow as tf
 import random
+from tensorflow.keras.models import load_model 
 import nltk
 from nltk.stem.lancaster import LancasterStemmer
-from keras.models import load_model
 import json
+import pandas as pd
+import keras
 import pickle
 
 stemmer = LancasterStemmer()
 
-with open("labeling_models/model.pkl", "rb") as words_file:
-    words =load_model(words_file)
+with open("labeling_models/words.pkl", "rb") as words_file:
+    words = pickle.load(words_file)
+# words = pd.read_pickle(r'labeling_models/words.pkl')
 
-with open("/labeling_models/classes.pkl", "rb") as classes_file:
+with open("labeling_models/classes.pkl", "rb") as classes_file:
     classes = pickle.load(classes_file)
-
-with open("/labeling_models/model.pkl", "rb") as model_file:
-    model = pickle.load(model_file)
-
+model = load_model('new_model/model.h5')
+# with open("new_model/model.h5", "rb") as model_file:
+#     model = pickle.load(model_file)
+# model = tf.keras.models.load_model('new_model/my_model.keras')
 
 def response(user_input):
     user_input_words = nltk.word_tokenize(user_input)
